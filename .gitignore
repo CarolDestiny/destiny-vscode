@@ -1,0 +1,43 @@
+# CMake and Ninja generated files
+/build/
+/output/
+CMakeCache.txt
+CMakeFiles/
+CMakeScripts/
+CTestTestfile.cmake
+cmake_install.cmake
+install_manifest.txt
+compile_commands.json
+build.ninja
+.ninja_deps
+.ninja_log
+rules.ninja
+CMakeUserPresets.json
+
+# Compiled binaries and intermediate files
+*.exe
+*.dll
+*.pdb
+*.ilk
+*.lib
+*.a
+*.obj
+*.o
+*.d
+*.gcda
+*.gcno
+*.gcov
+
+# Keep shared workspace configuration, ignore local VSCode state.
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+
+# OS and editor temporary files
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*~

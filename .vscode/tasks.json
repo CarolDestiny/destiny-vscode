@@ -1,0 +1,89 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "CMake: Configure (GCC x64 Debug)",
+            "type": "process",
+            "command": "D:/cpp/cmake/bin/cmake.exe",
+            "args": [
+                "--preset",
+                "gcc64-debug"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}/code"
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "CMake: Build (GCC x64 Debug)",
+            "type": "process",
+            "command": "D:/cpp/cmake/bin/cmake.exe",
+            "args": [
+                "--build",
+                "--preset",
+                "gcc64-debug",
+                "--parallel"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}/code"
+            },
+            "dependsOrder": "sequence",
+            "dependsOn": "CMake: Configure (GCC x64 Debug)",
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        },
+        {
+            "label": "CMake: Build (Clang x64 Debug)",
+            "type": "process",
+            "command": "D:/cpp/cmake/bin/cmake.exe",
+            "args": [
+                "--build",
+                "--preset",
+                "clang64-debug",
+                "--parallel"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}/code"
+            },
+            "dependsOrder": "sequence",
+            "dependsOn": "CMake: Configure (Clang x64 Debug)",
+            "problemMatcher": [
+                "$gcc"
+            ]
+        },
+        {
+            "label": "CMake: Configure (Clang x64 Debug)",
+            "type": "process",
+            "command": "D:/cpp/cmake/bin/cmake.exe",
+            "args": [
+                "--preset",
+                "clang64-debug"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}/code"
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "CMake: Clean (GCC x64 Debug)",
+            "type": "process",
+            "command": "D:/cpp/cmake/bin/cmake.exe",
+            "args": [
+                "--build",
+                "--preset",
+                "gcc64-debug",
+                "--target",
+                "clean"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}/code"
+            },
+            "problemMatcher": []
+        }
+    ]
+}

@@ -1,0 +1,177 @@
+{
+  "version": 6,
+  "cmakeMinimumRequired": {
+    "major": 3,
+    "minor": 20,
+    "patch": 0
+  },
+  "configurePresets": [
+    {
+      "name": "base",
+      "hidden": true,
+      "generator": "Ninja",
+      "binaryDir": "${sourceDir}/../build/${presetName}",
+      "cacheVariables": {
+        "CMAKE_EXPORT_COMPILE_COMMANDS": "ON"
+      }
+    },
+    {
+      "name": "gcc32-base",
+      "hidden": true,
+      "inherits": "base",
+      "environment": {
+        "PATH": "D:/cpp/toolchains/gcc/x86/bin;D:/cpp/ninja;$penv{PATH}"
+      },
+      "cacheVariables": {
+        "CMAKE_C_COMPILER": "D:/cpp/toolchains/gcc/x86/bin/gcc.exe",
+        "CMAKE_CXX_COMPILER": "D:/cpp/toolchains/gcc/x86/bin/g++.exe"
+      }
+    },
+    {
+      "name": "gcc64-base",
+      "hidden": true,
+      "inherits": "base",
+      "environment": {
+        "PATH": "D:/cpp/toolchains/gcc/x64/bin;D:/cpp/ninja;$penv{PATH}"
+      },
+      "cacheVariables": {
+        "CMAKE_C_COMPILER": "D:/cpp/toolchains/gcc/x64/bin/gcc.exe",
+        "CMAKE_CXX_COMPILER": "D:/cpp/toolchains/gcc/x64/bin/g++.exe"
+      }
+    },
+    {
+      "name": "clang32-base",
+      "hidden": true,
+      "inherits": "base",
+      "environment": {
+        "PATH": "D:/cpp/toolchains/llvm-mingw/x86/bin;D:/cpp/toolchains/gcc/x86/bin;D:/cpp/ninja;$penv{PATH}"
+      },
+      "cacheVariables": {
+        "CMAKE_C_COMPILER": "D:/cpp/toolchains/llvm-mingw/x86/bin/clang.exe",
+        "CMAKE_CXX_COMPILER": "D:/cpp/toolchains/llvm-mingw/x86/bin/clang++.exe"
+      }
+    },
+    {
+      "name": "clang64-base",
+      "hidden": true,
+      "inherits": "base",
+      "environment": {
+        "PATH": "D:/cpp/toolchains/llvm-mingw/x64/bin;D:/cpp/toolchains/gcc/x64/bin;D:/cpp/ninja;$penv{PATH}"
+      },
+      "cacheVariables": {
+        "CMAKE_C_COMPILER": "D:/cpp/toolchains/llvm-mingw/x64/bin/clang.exe",
+        "CMAKE_CXX_COMPILER": "D:/cpp/toolchains/llvm-mingw/x64/bin/clang++.exe"
+      }
+    },
+    {
+      "name": "gcc32-debug",
+      "displayName": "GCC 32-bit Debug",
+      "inherits": "gcc32-base",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Debug"
+      }
+    },
+    {
+      "name": "gcc32-release",
+      "displayName": "GCC 32-bit Release",
+      "inherits": "gcc32-base",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Release"
+      }
+    },
+    {
+      "name": "gcc64-debug",
+      "displayName": "GCC 64-bit Debug",
+      "inherits": "gcc64-base",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Debug"
+      }
+    },
+    {
+      "name": "gcc64-release",
+      "displayName": "GCC 64-bit Release",
+      "inherits": "gcc64-base",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Release"
+      }
+    },
+    {
+      "name": "clang32-debug",
+      "displayName": "Clang 32-bit Debug",
+      "inherits": "clang32-base",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Debug",
+        "CMAKE_C_FLAGS": "--target=i686-w64-mingw32",
+        "CMAKE_CXX_FLAGS": "--target=i686-w64-mingw32",
+        "CMAKE_EXE_LINKER_FLAGS": "--target=i686-w64-mingw32"
+      }
+    },
+    {
+      "name": "clang32-release",
+      "displayName": "Clang 32-bit Release",
+      "inherits": "clang32-base",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Release",
+        "CMAKE_C_FLAGS": "--target=i686-w64-mingw32",
+        "CMAKE_CXX_FLAGS": "--target=i686-w64-mingw32",
+        "CMAKE_EXE_LINKER_FLAGS": "--target=i686-w64-mingw32"
+      }
+    },
+    {
+      "name": "clang64-debug",
+      "displayName": "Clang 64-bit Debug",
+      "inherits": "clang64-base",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Debug",
+        "CMAKE_C_FLAGS": "--target=x86_64-w64-mingw32",
+        "CMAKE_CXX_FLAGS": "--target=x86_64-w64-mingw32",
+        "CMAKE_EXE_LINKER_FLAGS": "--target=x86_64-w64-mingw32"
+      }
+    },
+    {
+      "name": "clang64-release",
+      "displayName": "Clang 64-bit Release",
+      "inherits": "clang64-base",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Release",
+        "CMAKE_C_FLAGS": "--target=x86_64-w64-mingw32",
+        "CMAKE_CXX_FLAGS": "--target=x86_64-w64-mingw32",
+        "CMAKE_EXE_LINKER_FLAGS": "--target=x86_64-w64-mingw32"
+      }
+    }
+  ],
+  "buildPresets": [
+    {
+      "name": "gcc32-debug",
+      "configurePreset": "gcc32-debug"
+    },
+    {
+      "name": "gcc32-release",
+      "configurePreset": "gcc32-release"
+    },
+    {
+      "name": "gcc64-debug",
+      "configurePreset": "gcc64-debug"
+    },
+    {
+      "name": "gcc64-release",
+      "configurePreset": "gcc64-release"
+    },
+    {
+      "name": "clang32-debug",
+      "configurePreset": "clang32-debug"
+    },
+    {
+      "name": "clang32-release",
+      "configurePreset": "clang32-release"
+    },
+    {
+      "name": "clang64-debug",
+      "configurePreset": "clang64-debug"
+    },
+    {
+      "name": "clang64-release",
+      "configurePreset": "clang64-release"
+    }
+  ]
+}

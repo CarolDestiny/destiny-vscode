@@ -16,7 +16,7 @@ template <typename T, size_t SIZE>
 class destiny::QueueBoundMPMC {
 public:
 	inline QueueBoundMPMC() noexcept;
-	inline ~QueueBoundMPMC() noexcept;
+	inline ~QueueBoundMPMC() noexcept = default;
 
 	inline bool empty() noexcept;
 	inline size_t size() noexcept;
@@ -25,6 +25,8 @@ public:
 	inline void pop(T& value) noexcept;
 
 private:
+	static_assert(SIZE > 0, "SIZE must be greater than zero");
+
 	static constexpr size_t CAPACITY = std::bit_ceil(SIZE);
 	static constexpr size_t MASK = CAPACITY - 1;
 	struct Slot;
@@ -53,17 +55,10 @@ destiny::QueueBoundMPMC<T, SIZE>::QueueBoundMPMC() noexcept
 
 template <typename T, size_t SIZE>
     requires std::is_pointer_v<T>
-destiny::QueueBoundMPMC<T, SIZE>::~QueueBoundMPMC() noexcept
-{
-	return;
-}
-
-template <typename T, size_t SIZE>
-    requires std::is_pointer_v<T>
 bool destiny::QueueBoundMPMC<T, SIZE>::empty() noexcept
 {
-	const size_t producerIndex = producerIndex_.load(std::memory_order_acquire);
-	const size_t consumerIndex = consumerIndex_.load(std::memory_order_acquire);
+	const size_t producerIndex = producerIndex_.load(std::memory_order_relaxed);
+	const size_t consumerIndex = consumerIndex_.load(std::memory_order_relaxed);
 	return producerIndex == consumerIndex;
 }
 
@@ -71,13 +66,10 @@ template <typename T, size_t SIZE>
     requires std::is_pointer_v<T>
 size_t destiny::QueueBoundMPMC<T, SIZE>::size() noexcept
 {
-	const size_t producerIndex = producerIndex_.load(std::memory_order_acquire);
-	const size_t consumerIndex = consumerIndex_.load(std::memory_order_acquire);
-	if (producerIndex < consumerIndex) {
-		return 0;
-	}
-	const size_t n = producerIndex - consumerIndex;
-	return n <= CAPACITY ? n : CAPACITY;
+	const size_t producerIndex = producerIndex_.load(std::memory_order_relaxed);
+	const size_t consumerIndex = consumerIndex_.load(std::memory_order_relaxed);
+	const size_t count = producerIndex - consumerIndex;
+	return count <= CAPACITY ? count : CAPACITY;
 }
 
 template <typename T, size_t SIZE>

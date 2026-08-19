@@ -1,15 +1,16 @@
 add_library(
-    destiny_core_thread
+    destiny_core_diagnostic
     STATIC
-    thread.hpp
+    diagnostic.hpp
     share.hpp
     onload.cpp
     unload.cpp
-    thread.cpp
+    diagnostic.cpp
 )
 
 target_include_directories(
-    destiny_core_thread
+    destiny_core_diagnostic
     PUBLIC
     ${CMAKE_CURRENT_SOURCE_DIR}
 )
+

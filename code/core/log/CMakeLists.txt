@@ -6,6 +6,9 @@ add_library(
     onload.cpp
     unload.cpp
     log.cpp
+
+    slowWrite.hpp
+    slowWrite.cpp
 )
 
 target_include_directories(

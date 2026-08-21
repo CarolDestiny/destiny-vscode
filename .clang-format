@@ -6,7 +6,7 @@ UseTab: ForIndentation
 IndentWidth: 4
 TabWidth: 4
 ContinuationIndentWidth: 4
-ColumnLimit: 120
+ColumnLimit: 999
 LineEnding: CRLF
 Cpp11BracedListStyle: AlignFirstComment
 

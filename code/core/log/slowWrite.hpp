@@ -1,5 +1,6 @@
 #pragma once
+#include "log.hpp"
 
 namespace destiny::detail {
-	void slowWrite() noexcept;
+	void slowWrite(const Log& log) noexcept;
 }
